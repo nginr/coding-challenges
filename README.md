@@ -1,2 +1,1 @@
-# coding-challenges
-Coding Challenges in Crust.
+# Coding Challenges in Crust.
