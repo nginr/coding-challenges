@@ -65,7 +65,7 @@ This is template that needs the ENV variable substituted.
 
 ### VSCode
 
-VSCode needs a setting set for this seemingly unlinked rust file project in the `.vscode/settings.jaon` file.
+VSCode needs a setting set for this seemingly unlinked rust file project in the `.vscode/settings.json` file.
 See [Issue #15068](https://github.com/rust-lang/rust-analyzer/issues/15068)
 
 ```json
@@ -76,3 +76,36 @@ See [Issue #15068](https://github.com/rust-lang/rust-analyzer/issues/15068)
 }
 ```
 
+### Debugging
+
+For Debugging you may need to install the Rust-Analyzer extension and a `launch.json` file. Maybe set the `RUST_BACKTRACE=1` environment variable also.
+
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Rust",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/1_rjsonp",
+            "args": ["${workspaceFolder}/tests/1_json_parser/step2/invalid.json"],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": true,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}
+```

@@ -41,6 +41,37 @@ vsset:
 	@echo '}' >> .vscode/settings.json
 	@echo "Generated .vscode/settings.json"
 
+vlaunch:
+	@mkdir -p .vscode/
+	@echo '{' > .vscode/launch.json
+	@echo '    "version": "0.2.0",' >> .vscode/launch.json
+	@echo '    "configurations": [' >> .vscode/launch.json
+	@echo '        {' >> .vscode/launch.json
+	@echo '            "name": "Debug Rust",' >> .vscode/launch.json
+	@echo '            "type": "cppdbg",' >> .vscode/launch.json
+	@echo '            "request": "launch",' >> .vscode/launch.json
+	@echo '            "program": "${workspaceFolder}/build/1_rjsonp",' >> .vscode/launch.json
+	@echo '            "args": ["${workspaceFolder}/tests/1_json_parser/step2/invalid.json"],' >> .vscode/launch.json
+	@echo '            "cwd": "${workspaceFolder}",' >> .vscode/launch.json
+	@echo '            "stopAtEntry": true,' >> .vscode/launch.json
+	@echo '            "MIMode": "gdb",' >> .vscode/launch.json
+	@echo '            "setupCommands": [' >> .vscode/launch.json
+	@echo '                {' >> .vscode/launch.json
+	@echo '                    "description": "Enable pretty-printing for gdb",' >> .vscode/launch.json
+	@echo '                    "text": "-enable-pretty-printing",' >> .vscode/launch.json
+	@echo '                    "ignoreFailures": true' >> .vscode/launch.json
+	@echo '                },' >> .vscode/launch.json
+	@echo '                {' >> .vscode/launch.json
+	@echo '                    "description": "Set Disassembly Flavor to Intel",' >> .vscode/launch.json
+	@echo '                    "text": "-gdb-set disassembly-flavor intel",' >> .vscode/launch.json
+	@echo '                    "ignoreFailures": true' >> .vscode/launch.json
+	@echo '                }' >> .vscode/launch.json
+	@echo '            ]' >> .vscode/launch.json
+	@echo '        }' >> .vscode/launch.json
+	@echo '    ]' >> .vscode/launch.json
+	@echo '}' >> .vscode/launch.json
+	@echo "Generated .vscode/launch.json"
+
 tests: t0_wc t1_rjsonp
 
 t0_wc: 0_wcr
