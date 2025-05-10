@@ -3,8 +3,8 @@ THIRDPARTY=thirdparty
 CRATES=crates
 SRC=src
 
-ARGS = "-lc $(BUILD)/nob.o $(BUILD)/flag.o"
-RFLAGS = --edition 2021 -g -C opt-level=z -C link-args=$(ARGS) -C panic="abort"
+ARGS = "-lc $(BUILD)/nob.o $(BUILD)/flag.o -lm"
+RFLAGS = --edition 2021 -g -C opt-level=1 -C debuginfo=2 -C link-args=$(ARGS) -C panic="abort"
 
 .PHONY: all projects
 
@@ -41,7 +41,22 @@ vsset:
 	@echo '}' >> .vscode/settings.json
 	@echo "Generated .vscode/settings.json"
 
+tests: t0_wc t1_rjsonp
 
+t0_wc: 0_wcr
+	$(BUILD)/0_wcr -c tests/0_wc/test.txt
+	$(BUILD)/0_wcr -l tests/0_wc/test.txt
+	$(BUILD)/0_wcr tests/0_wc/test.txt
+
+t1_rjsonp: 1_rjsonp
+	$(BUILD)/1_rjsonp tests/1_json_parser/step1/valid.json
+	$(BUILD)/1_rjsonp tests/1_json_parser/step1/invalid.json || (exit 0)
+	$(BUILD)/1_rjsonp tests/1_json_parser/step2/valid.json
+	$(BUILD)/1_rjsonp tests/1_json_parser/step2/invalid.json || (exit 0)
+	$(BUILD)/1_rjsonp tests/1_json_parser/step2/valid2.json
+	$(BUILD)/1_rjsonp tests/1_json_parser/step2/invalid2.json || (exit 0)
+	$(BUILD)/1_rjsonp tests/1_json_parser/step3/valid.json
+	$(BUILD)/1_rjsonp tests/1_json_parser/step3/invalid.json || (exit 0)
 
 clean:
 	rm -rf $(BUILD)/ rust-project.json

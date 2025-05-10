@@ -1,5 +1,4 @@
 {
-  "sysroot": "${HOME}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu",
   "sysroot_src": "${HOME}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library",
   "crates": [
     {
@@ -7,7 +6,7 @@
       "edition": "2021",
       "deps": [],
       "source": {
-        "include_dirs": [ "crates/" ],
+        "include_dirs": [ ".", "./crates/*" ],
         "exclude_dirs": []
       }
     },
@@ -16,7 +15,7 @@
       "edition": "2021",
       "deps": [],
       "source": {
-        "include_dirs": [ "crates/" ],
+        "include_dirs": [ ".", "./crates/*" ],
         "exclude_dirs": []
       }
     }
