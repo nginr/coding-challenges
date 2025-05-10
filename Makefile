@@ -19,9 +19,12 @@ $(BUILD)/nob.o: $(THIRDPARTY)/nob.h
 $(BUILD)/flag.o: $(THIRDPARTY)/flag.h
 	gcc -g -x c -DFLAG_IMPLEMENTATION -c $(THIRDPARTY)/flag.h -o $(BUILD)/flag.o
 
-projects: 0_wcr
+projects: 0_wcr 1_rjsonp
 
 0_wcr: $(SRC)/0_wc.rs $(BUILD)/nob.o $(BUILD)/flag.o
+	rustc $(RFLAGS) $< -o $(BUILD)/$@
+
+1_rjsonp: $(SRC)/1_json_parser.rs $(BUILD)/nob.o $(BUILD)/flag.o
 	rustc $(RFLAGS) $< -o $(BUILD)/$@
 
 r-a: rust-project.json.template

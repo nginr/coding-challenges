@@ -28,6 +28,7 @@ pub mod libc {
         pub static stdout: *mut FILE;
         pub static stderr: *mut FILE;
         pub fn strcmp(s1: *const c_char, s2: *const c_char) -> c_int;
+        pub fn strrchr(s: *const c_char, c: c_int) -> *mut c_char;
         pub fn strlen(s: *const c_char) -> usize;
         pub fn strerror(errnum: c_int) -> *mut c_char;
         pub fn abort() -> !;
