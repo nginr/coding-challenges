@@ -38,22 +38,23 @@ See [Non-Cargo projects](https://rust-analyzer.github.io/book/non_cargo_based_pr
 
 ```json
 {
-  "sysroot": "${HOME}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu",
   "sysroot_src": "${HOME}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library",
   "crates": [
     {
-      "root_module": "0_wc-rs/src/main.rs",
+      "root_module": "src/0_wc.rs",
       "edition": "2021",
+      "deps": [],
       "source": {
-        "include_dirs": ["0_wc-rs/src", "crates/"],
+        "include_dirs": [ ".", "./crates/*" ],
         "exclude_dirs": []
       }
     },
     {
-      "root_module": "1_json_parser-rs/src/main.rs",
+      "root_module": "src/1_json_parser.rs",
       "edition": "2021",
+      "deps": [],
       "source": {
-        "include_dirs": ["1_json_parser-rs/src", "crates/"],
+        "include_dirs": [ ".", "./crates/*" ],
         "exclude_dirs": []
       }
     }
